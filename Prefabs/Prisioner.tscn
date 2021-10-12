@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Prefabs/NPC.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Prisioner.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "DEAD"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flipeable/Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 145, 49, 22, 22 ), Rect2( 121, 49, 22, 22 ), Rect2( 169, 49, 22, 22 ), Rect2( 121, 49, 22, 22 ), Rect2( 193, 49, 22, 22 ), Rect2( 169, 49, 22, 22 ), Rect2( 121, 49, 22, 22 ), Rect2( 217, 49, 22, 22 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "IDLE"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flipeable/Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 1, 49, 22, 22 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:SideOfLook")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, -1 ]
+}
+
+[sub_resource type="Animation" id=4]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flipeable/Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 49, 49, 22, 22 ), Rect2( 25, 49, 22, 22 ) ]
+}
+
+[node name="Prisioner" groups=[
+"FRIENDS",
+] instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+SideOfLook = -1
+State = 1
+
+[node name="AnimationPlayer" parent="." index="0"]
+anims/AnimationDEAD = SubResource( 1 )
+anims/IDLE = SubResource( 2 )
+anims/LOOK = SubResource( 3 )
+anims/WALK = SubResource( 4 )
+
+[node name="Sprite" parent="Flipeable" index="0"]
+region_rect = Rect2( 145, 49, 22, 22 )

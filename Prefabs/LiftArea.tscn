@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 54 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 48 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 102 )
+
+[node name="LiftArea" type="Area2D" groups=[
+"LIFT",
+]]
+position = Vector2( -60, 24 )
+space_override = 3
+gravity_vec = Vector2( 0, -1 )
+monitoring = false
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -10 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( -192, 120 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/NPC.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 8 )
+
+[node name="Doctor" instance=ExtResource( 1 )]
+position = Vector2( 10, 20 )
+
+[node name="Sprite" parent="Flipeable" index="0"]
+region_rect = Rect2( 1, 73, 22, 22 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 0, -8 )
+shape = SubResource( 1 )
+
+[node name="HitBox" parent="." index="3"]
+collision_layer = 4

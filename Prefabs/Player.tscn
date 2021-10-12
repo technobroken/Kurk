@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Prefabs/Character2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Prefabs/AnimationDEAD.tres" type="Animation" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "IDLE"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flipeable/Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 1, 49, 22, 22 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "WALK"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flipeable/Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 49, 49, 22, 22 ), Rect2( 25, 49, 22, 22 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 6.0
+
+[node name="Player" groups=[
+"FRIENDS",
+] instance=ExtResource( 1 )]
+collision_layer = 1
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="0"]
+autoplay = "IDLE"
+anims/DEAD = ExtResource( 3 )
+anims/IDLE = SubResource( 1 )
+anims/WALK = SubResource( 2 )
+
+[node name="Sprite" parent="Flipeable" index="0"]
+region_rect = Rect2( 1, 49, 22, 22 )
+
+[node name="HitBox" parent="." index="3"]
+monitorable = false
+collision_mask = 14
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="area_exited" from="HitBox" to="." method="_on_HitBox_area_exited"]

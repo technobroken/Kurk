@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/RoomHitBox.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 144, 81 )
+
+[node name="RoomHitBox" type="Area2D" groups=[
+"ROOMS",
+]]
+monitoring = false
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 1 )
+Size = Vector2( 288, 162 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
